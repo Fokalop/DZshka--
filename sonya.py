@@ -50,33 +50,37 @@ def get_user_by_id(id):
 
 if __name__ == '__main__':
     init_db()
-    choice = input("Выберите функцию (update, delete, insert, get_user): ")
+    while True:
+        choice = input("Выберите функцию (update, delete, insert, get_user, stop): ")
 
-    if choice == "update":
+        if choice == "update":
             id = int(input("Введите id для обновления: "))
             fio = input("Введите ФИО: ")
             status = input("Введите должность: ")
             update_user(id, fio, status)
 
-    elif choice == "delete":
-        id = int(input("Введите id для удаления: "))
-        delete_user(id)
+        elif choice == "delete":
+            id = int(input("Введите id для удаления: "))
+            delete_user(id)
 
-    elif choice == "insert":
-        fio = input("Введите ФИО: ")
-        status = input("Введите должность: ")
-        InsertUser(fio, status)
+        elif choice == "insert":
+            fio = input("Введите ФИО: ")
+            status = input("Введите должность: ")
+            InsertUser(fio, status)
 
-    elif choice == "get_user":
-        id = int(input("Введите id для просмотра: "))
-        user_data = get_user_by_id(id)  
-        if user_data:
-            print("Данные пользователя:")
-            print(f"ID: {user_data[0]}")
-            print(f"ФИО: {user_data[1]}")
-            print(f"должность: {user_data[2]}")
+        elif choice == "get_user":
+            id = int(input("Введите id для просмотра: "))
+            user_data = get_user_by_id(id)  
+            if user_data:
+                print("Данные пользователя:")
+                print(f"ID: {user_data[0]}")
+                print(f"ФИО: {user_data[1]}")
+                print(f"должность: {user_data[2]}")
+            else:
+                print(f"Пользователь с id {id} не найден.")
+        
+        elif choice == "stop":
+            print("Программа завершена.")
+            break
         else:
-            print(f"Пользователь с id {id} не найден.")
-
-    else:
-        print("Неверная функция.")
+            print("Неверная функция.")
